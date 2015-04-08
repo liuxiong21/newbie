@@ -8,7 +8,6 @@ import (
 func main() {
 	fmt.Printf("Hello, world.\n")
 	fmt.Printf(stringutil.Reverse("!oG ,olleH"))
-	fmt.Println("update")
 }
 
 
