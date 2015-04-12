@@ -1,8 +1,6 @@
 package stringutil
 
-import (
-
-)
+import ()
 
 // Reverse returns its argument string reversed rune-wise left to right.
 func Reverse(s string) string {
@@ -12,4 +10,3 @@ func Reverse(s string) string {
 	}
 	return string(r)
 }
-

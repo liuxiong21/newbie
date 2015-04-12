@@ -1,7 +1,7 @@
 package stringutil
 
 import (
-    "testing"
+	"testing"
 )
 
 func TestReverse(t *testing.T) {
@@ -12,6 +12,7 @@ func TestReverse(t *testing.T) {
 		{"Hello, 世界", "界世 ,olleH"},
 		{"", ""},
 	}
+	t.Log("this is test")
 	for _, c := range cases {
 		got := Reverse(c.in)
 		if got != c.want {
@@ -19,4 +20,3 @@ func TestReverse(t *testing.T) {
 		}
 	}
 }
-
