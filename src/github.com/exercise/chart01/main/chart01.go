@@ -8,9 +8,10 @@ import (
 func main() {
 	fmt.Println("Begin")
 	//callShowHello()
-	//callBigDigital()
+	callBigDigital()
 	//callMyStack()
-	callAmericanise()
+	//callAmericanise()
+	//callPolar2Cartesian()
 	fmt.Println("End")
 }
 
@@ -32,4 +33,8 @@ func callMyStack(){
 
 func callAmericanise(){
 	chart01.Americanise()
+}
+
+func callPolar2Cartesian(){
+	chart01.Polar2cartesian()
 }
