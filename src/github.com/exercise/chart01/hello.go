@@ -1,4 +1,4 @@
-package chart01
+package main
 
 import (
 	"fmt"

@@ -2,29 +2,28 @@ package main
 
 import (
 	"fmt"
-	"github.com/exercise/chart01"
 )
 
 func main() {
 	fmt.Println("Begin")
 	//callShowHello()
-	callBigDigital()
+	//callBigDigital()
 	//callMyStack()
 	//callAmericanise()
-	//callPolar2Cartesian()
+	callPolar2Cartesian()
 	fmt.Println("End")
 }
 
 func callShowHello(){
-	chart01.ShowHello()
+	ShowHello()
 }
 
 func callBigDigital(){
-	chart01.BigDigital("123456")
+	BigDigital("123456")
 }
 
 func callMyStack(){
-	var mystack chart01.Stacker
+	var mystack Stacker
 	mystack.Push("this is test")
 	fmt.Println(mystack.Top())
 	mystack.Push(0)
@@ -32,9 +31,9 @@ func callMyStack(){
 }
 
 func callAmericanise(){
-	chart01.Americanise()
+	Americanise()
 }
 
 func callPolar2Cartesian(){
-	chart01.Polar2cartesian()
+	Polar2cartesian()
 }
