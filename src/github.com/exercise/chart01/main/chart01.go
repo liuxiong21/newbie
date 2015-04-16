@@ -31,10 +31,5 @@ func callMyStack(){
 }
 
 func callAmericanise(){
-//	inFilename,outFilename,err := chart01.FilenamesFromCommandLine()
-//	if err!=nil{
-//		fmt.Println(err.Error())
-//	}
-//	chart01.MakeReplaceFunction(inFilename)
-//	fmt.Println(outFilename)
+	chart01.Americanise()
 }
