@@ -5,6 +5,11 @@ import (
 	"math"
 	"strings"
 	"unicode/utf8"
+	"unicode"
+	"io"
+	"os"
+	"strconv"
+	"regexp"
 )
 
 func main() {
@@ -23,6 +28,11 @@ func main() {
 	fmt.Println()
 	fmt.Println(firstChar)
 	Humanize(10000000.299, 30, 10, "_","0")
+	stringMap()
+	readRune()
+	stringConv()
+	regexpMatch()
+	M3u2pls("/opt/book/goeg/src/m3u2pls/David-Bowie-Singles.m3u","/opt/tmp/go/David-Bowie-Singles.pls")
 }
 
 func Humanize(amount float64, width, decimals int, sp,pad string) {
@@ -48,4 +58,54 @@ func Humanize(amount float64, width, decimals int, sp,pad string) {
 		number = strings.Repeat(pad,gap)+number
 	}
 	fmt.Println(number)
+}
+
+func stringMap(){
+	var mapFunc = func(c rune)rune{
+		if c>127{
+			return -1
+		}
+		return c
+	}
+	fmt.Println(strings.Map(mapFunc,"this is test 顶顶顶顶 fff"))
+	
+}
+
+func readRune(){
+	reader := strings.NewReader("中国ch")
+	for{
+		char,size,err := reader.ReadRune()
+		if err!=nil{
+			if err== io.EOF{
+				break
+			}
+			panic(err)
+		}
+		fmt.Fprintf(os.Stdout,"%U '%c' %#T %d % X\n",char,char,char,size,[]byte(string(char)))
+	}
+}
+
+func stringConv(){
+	var buffer []byte
+	bools := []string{"true","false","1","0","True"}
+	for _,b := range bools{
+		if result,err := strconv.ParseBool(b);err==nil{
+			buffer = strconv.AppendBool(buffer,result)
+			buffer = append(buffer,' ')
+		}
+	}
+	fmt.Print(string(buffer))
+	fmt.Println("\n",unicode.SimpleFold('中'))
+}
+
+func regexpMatch(){
+	myreg :=  regexp.MustCompile(`\s*([[:alpha:]]\w*)\s*:\s*(\w+)`)
+	lines := []string{" name : freeman","email:liuxiong21@gmail.com","sex:man age:19"}
+	for _,line := range lines{
+		if matches := myreg.FindAllStringSubmatch(line,-1);len(matches)>0{
+			for _,match := range matches{
+				fmt.Println(match[1],"-->",match[2])
+			}
+		}
+	}
 }
