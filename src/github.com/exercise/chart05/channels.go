@@ -4,7 +4,12 @@ import (
 	"fmt"
 	"math/rand"
 	"time"
+	"strings"
 )
+
+func init(){
+	fmt.Println("Channels.go file init function called")
+}
 
 func createCounter(start int) chan int {
 	channel := make(chan int)
@@ -35,7 +40,7 @@ func SelectChannel() {
 		channels[i] = make(chan int)
 	}
 	go func() {
-		for i := 0; i < 10; i++ {
+		for {
 			sleeps := time.Second * time.Duration(rand.Intn(10))
 			fmt.Println("Will sleep", sleeps)
 			time.Sleep(sleeps)
@@ -64,4 +69,24 @@ func SelectChannel() {
 		}
 	}
 
+}
+
+func ErrorRecover(){
+	var strType interface{} = "this is string"
+	defer func(){
+		if err:=recover();err!=nil{
+			fmt.Println("Recover error",err)
+		}
+	}()
+	intType := strType.(int)
+	fmt.Println(intType)
+}
+
+func MakeAndAddSuffix(suffix string) (func(string)string){
+	return func(name string)string{
+		if !strings.HasSuffix(name,suffix){
+			return name+suffix
+		}
+		return name
+	}
 }

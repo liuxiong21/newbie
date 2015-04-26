@@ -6,6 +6,10 @@ import (
 	"fmt"
 )
 
+func init(){
+	fmt.Println("JsonParser.go file init function called")
+}
+
 type User struct {
 	Name    string
 	Age     int

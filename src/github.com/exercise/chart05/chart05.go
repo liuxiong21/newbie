@@ -4,6 +4,10 @@ import (
 	"fmt"
 )
 
+func init(){
+	fmt.Println("Chart05.go file init function called")
+}
+
 func main() {
 	typeAssertion()
 	fmt.Println(shadow())
@@ -13,5 +17,8 @@ func main() {
 	TypeSwitch("this is string",30,int64(100),float64(1000.00),true)
 	JsonParser(`{"name":"liuxiong21","age":18,"address":"guangzhou","salary":100.9}`)
 	DoubleCounter()
-	SelectChannel()
+	//SelectChannel()
+	ErrorRecover()
+	addZip := MakeAndAddSuffix(".zip")
+	fmt.Println(addZip("maven"))
 }
