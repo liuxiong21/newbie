@@ -23,17 +23,19 @@ func DoubleCounter() {
 	for i := 0; i < 10; i++ {
 		fmt.Printf("CounterA=%d,CounterB=%d\n", <-chanA, <-chanB)
 	}
-	//defer close(chanA)
-	//defer close(chanB)
+	/**defer func() {
+		close(chanA)
+		close(chanB)
+	}()*/
 }
 
 func SelectChannel() {
 	channels := make([]chan int, 6)
-	for i := range channels{
+	for i := range channels {
 		channels[i] = make(chan int)
 	}
 	go func() {
-		for i:=0;i<10;i++{
+		for i := 0; i < 10; i++ {
 			sleeps := time.Second * time.Duration(rand.Intn(10))
 			fmt.Println("Will sleep", sleeps)
 			time.Sleep(sleeps)
@@ -41,6 +43,7 @@ func SelectChannel() {
 			channels[index] <- rand.Intn(10000)
 		}
 	}()
+	var counter = 0
 	for {
 		select {
 		case rd := <-channels[0]:
@@ -55,7 +58,10 @@ func SelectChannel() {
 			fmt.Printf("Channel[4] generate value[%d]\n", rd)
 		case rd := <-channels[5]:
 			fmt.Printf("Channel[5] generate value[%d]\n", rd)
+		default:
+			counter++
+			time.Sleep(1*time.Second)
 		}
 	}
-	time.Sleep(time.Second*1000)
+
 }
