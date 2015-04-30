@@ -20,5 +20,10 @@ func createSlice(){
 	slice = append(slice,100)
 	fmt.Println(len(slice),cap(slice))
 	fmt.Println(len(slice2),cap(slice2))
+	slice3 := make([]string,0)
+	slice3 = append(slice3,"line 1");
+	fmt.Println(slice3)
 }
+
+
 
