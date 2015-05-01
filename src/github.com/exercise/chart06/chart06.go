@@ -45,6 +45,7 @@ func main() {
 	printAuthor1()
 	printAuthor2()
 	printOptions()
+	printFuzzyBool()
 }
 
 func exchange(function Exchanger) {
