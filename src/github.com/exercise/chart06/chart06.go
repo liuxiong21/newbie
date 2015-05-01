@@ -39,7 +39,11 @@ func main() {
 	bytes := make([]byte,0)
 	bytes = append(bytes,'d')
 	fmt.Printf("%q\n",bytes)
-
+	part2 := Part{12,"thE case-insensible"}
+	changePartCase(&part2)
+	printPerson()
+	printAuthor1()
+	printAuthor2()
 }
 
 func exchange(function Exchanger){

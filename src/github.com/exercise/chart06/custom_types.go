@@ -43,11 +43,11 @@ type Part struct {
 	Name string
 }
 
-func (part *Part) ToLowerCase() {
+func (part *Part) LowerCase() {
 	part.Name = strings.ToLower(part.Name)
 }
 
-func (part *Part) ToUpperCase() {
+func (part *Part) UpperCase() {
 	part.Name = strings.ToUpper(part.Name)
 }
 
