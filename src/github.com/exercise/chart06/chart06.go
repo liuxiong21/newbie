@@ -46,6 +46,8 @@ func main() {
 	printAuthor2()
 	printOptions()
 	printFuzzyBool()
+	fmt.Println("----------------------------Shaper1-------------------------------------------")
+	printShape1()
 }
 
 func exchange(function Exchanger) {
