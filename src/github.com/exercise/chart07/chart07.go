@@ -5,6 +5,7 @@ import (
 )
 
 func main(){
-	RunParallelJobs()
-	RunParallelJobs2()
+	//RunParallelJobs()
+	//RunParallelJobs2()
+	parallelFileHandle()
 }
