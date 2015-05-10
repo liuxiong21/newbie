@@ -14,9 +14,10 @@ var w sync.WaitGroup
 func parallelFileHandle() {
 	filenameChan := sources("/opt/book")
 	willHandledFiles := filterSuffixes([]string{".gz", ".pdf"}, filenameChan)
-	w.Add(1)
-	handleFile(willHandledFiles)
-	w.Wait()
+	//w.Add(1)
+	finished := handleFile(willHandledFiles)
+	<- finished
+	//w.Wait()
 }
 
 func sources(dir string) <-chan string {
@@ -45,7 +46,7 @@ func getAllFiles(dir string) []string {
 }
 
 func filterSuffixes(suffixes []string, filesChan <-chan string) <-chan string {
-	result := make(chan string, 1000)
+	result := make(chan string, 10)
 	go func() {
 		for file := range filesChan {
 			result <- file
@@ -55,12 +56,15 @@ func filterSuffixes(suffixes []string, filesChan <-chan string) <-chan string {
 	return result
 }
 
-func handleFile(files <-chan string) {
+func handleFile(files <-chan string) <-chan bool{
+	result := make(chan bool)
 	go func() {
 		for file := range files {
 			fmt.Println(file)
 			time.Sleep(time.Second * time.Duration(1))
 		}
-		w.Done()
+		//w.Done()
+		result <- true
 	}()
+	return result
 }
